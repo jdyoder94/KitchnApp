@@ -1,0 +1,21 @@
+{
+  "name": "kitchnapp",
+  "version": "1.0.0",
+  "description": "A web application to save a shopping list, a pantry list, and recipes",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdyoder94/KitchnApp.git"
+  },
+  "author": "James Yoder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdyoder94/KitchnApp/issues"
+  },
+  "homepage": "https://github.com/jdyoder94/KitchnApp#readme"
+}
