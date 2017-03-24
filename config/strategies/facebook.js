@@ -18,7 +18,7 @@ module.exports = function() {
 
 		var providerUserProfile = {
 			name: profile.name.givenName,
-			email: profile.emails[0].value,
+			//email: profile.emails[0].value,
 			username: profile.username,
 			provider: 'facebook',
 			providerId: profile.id,

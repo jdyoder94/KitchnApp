@@ -1,0 +1,15 @@
+<div ng-controller="MainCtrl">
+    <div class="container">
+        <ul>
+            <li data-ng-show="!authentication.user"> <a href="/login">Login</a></li>
+            <li data-ng-show="!authentication.user"> <a href="/register" data-ng-show="!authentication.user">Register</a></li>
+            <li data-ng-show="!authentication.user"><a href="/oauth/facebook">Login with Facebook</a></li>
+            <li data-ng-show="authentication.user"><a href="/pantryList">Pantry List</a></li>
+            <li data-ng-show="authentication.user"><a href="/shoppingList">Shopping List</a></li>
+            <li data-ng-show="authentication.user"> <a href="/logout"> Logout </a></li>
+        </ul>
+        
+        <!--<h2 data-ng-show="authentication.user"> Welcome <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>!</h2>
+        -->
+    </div> 
+</div>

@@ -27,11 +27,11 @@ module.exports = function(app) {
       scope:['email']
   }));
     
-  app.get('oauth/twitter', passport.authenticate('twitter', {
+  app.get('/oauth/twitter', passport.authenticate('twitter', {
       failureRedirect: '/login'
   }));
     
-  app.get('oauth/twitter/callback', passport.authenticate('twitter', {
+  app.get('/oauth/twitter/callback', passport.authenticate('twitter', {
       failureRedirect: '/login',
       successRedirect: '/'
   }));
