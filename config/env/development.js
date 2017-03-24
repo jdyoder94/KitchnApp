@@ -10,7 +10,7 @@ module.exports = {
   },
   twitter: {
       clientID: '1Jl85w8bhudsgKpfNeWCYX2Uh',
-      clientSecret: '	VFqgZJ1EbwHhno9aEU0m759Agae9Qg0DY1EbQbo0jQU9yLwGon',
+      clientSecret: 'VFqgZJ1EbwHhno9aEU0m759Agae9Qg0DY1EbQbo0jQU9yLwGon',
       callbackURL: 'http://localhost:' + port + '/oauth/twitter/callback'
   }
 };

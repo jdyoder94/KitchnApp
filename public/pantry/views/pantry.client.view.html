@@ -1,0 +1,15 @@
+<div ng-controller="PantryCtrl">
+    <section data-ng-init="find()">
+    <h1> Pantry List </h1>
+        <ul>
+            <li ng-hide="!ingredients.length" ng-repeat="ing in ingredients">{{ing.name}}</li>
+        </ul>
+        <div data-ng-hide="!ingredients">
+        No ingredients, add some with the form below!
+        </div>
+        <form class="add-ingredient" data-ng-submit="addIngredient()" novalidate>
+            <input type="text" data-ng-model="ingName" id="ingName" placeholder="Add an ingredient">
+            <button type="submit">Add Item</button>
+        </form>
+    </section>
+</div>
