@@ -12,6 +12,8 @@ module.exports = function(){
         extended: true
     }));
     
+    app.use(bodyParser.json());
+    
     app.use(session({
         saveUninitialized: true,
         resave: true,

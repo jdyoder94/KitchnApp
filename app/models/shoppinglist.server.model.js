@@ -5,4 +5,4 @@ var ShoppingListSchema = new Schema({
    items: [ {type: String, trim: true, null: false} ]
 });
 
-mongoose.model('ShoppingList', ShoppingListSchema);
+mongoose.model('ShoppingList', ShoppingListSchema, 'shoppinglists');

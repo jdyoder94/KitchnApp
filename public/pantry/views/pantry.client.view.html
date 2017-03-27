@@ -2,9 +2,9 @@
     <section data-ng-init="find()">
     <h1> Pantry List </h1>
         <ul>
-            <li ng-hide="!ingredients.length" ng-repeat="ing in ingredients">{{ing.name}}</li>
+            <li ng-repeat="ing in ingredients.items">{{ing}}</li>
         </ul>
-        <div data-ng-hide="!ingredients">
+        <div data-ng-show="!ingredients.items.length">
         No ingredients, add some with the form below!
         </div>
         <form class="add-ingredient" data-ng-submit="addIngredient()" novalidate>

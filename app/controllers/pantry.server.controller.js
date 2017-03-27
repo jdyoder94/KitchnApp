@@ -10,7 +10,19 @@ exports.listItems = function(req, res, next){
         if(!pantry)
             return next(new Error('Failed to load pantry list'));
         
-        res.send(pantry);
+        res.json(pantry);
         next();
     });
+};
+
+exports.addItem = function(req, res, next){
+    var newIng = req.body;
+    var ingredient = newIng.ingName;
+    var pantryId = newIng.pantryId;
+    console.log(pantryId + "\n" + ingredient);
+    Pantry.findOneAndUpdate({_id: pantryId}, {$push: {items: ingredient}}, function(err, PantryList){
+        console.log(err);
+    });
+    
+    res.json(newIng);
 };
