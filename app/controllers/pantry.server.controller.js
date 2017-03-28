@@ -26,3 +26,17 @@ exports.addItem = function(req, res, next){
     
     res.json(newIng);
 };
+
+exports.deleteItems = function(req, res, next) {
+    var delRequest = req.body;
+    console.log(delRequest.ingNames);
+    var ingredientsToDelete = delRequest.ingNames;
+    console.log(ingredientsToDelete);
+    var pantryId = delRequest.pantryId;
+    console.log(pantryId);
+    Pantry.findOneAndUpdate({_id: pantryId}, {$pullAll: {items: ingredientsToDelete}}, function(err, PantryList){
+       console.log(err); 
+    });
+    
+    res.json(delRequest);
+};

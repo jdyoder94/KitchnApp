@@ -2,14 +2,15 @@
     <section data-ng-init="find()">
     <h1> Pantry List </h1>
         <ul>
-            <li ng-repeat="ing in ingredients.items">{{ing}}</li>
+           <li ng-repeat="ing in ingredients.items"><input type="checkbox" ng-model="selectedItems[ing]">{{ing}}</li>
         </ul>
         <div data-ng-show="!ingredients.items.length">
         No ingredients, add some with the form below!
         </div>
-        <form class="add-ingredient" data-ng-submit="addIngredient()" novalidate>
+        <form class="add-ingredient" novalidate>
             <input type="text" data-ng-model="ingName" id="ingName" placeholder="Add an ingredient">
-            <button type="submit">Add Item</button>
+            <button ng-click="addIngredient()">Add Item</button>
+            <button ng-click="deleteIngredients()">Delete Selected</button>
         </form>
     </section>
 </div>
