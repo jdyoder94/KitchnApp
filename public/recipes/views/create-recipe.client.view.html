@@ -1,16 +1,34 @@
 <div ng-controller="RecipeCtrl">
     <section>
         <h1>New Recipe</h1>
+        <form class="add-recipe" novalidate>
+        <input type="text" data-ng-model="name" id="name" placeholder="Name">
+        <div>
+        <input type="text" data-ng-model="servings" id="servings" placeholder="Serves">
+        </div>
+        <div>
+            <textarea id="description" data-ng-model="description" placeholder="Description" rows=4></textarea>
+        </div>
         
-        <input type="text" id="name">
-        <input type="text" id="servings">
-        
+        <h4> Ingredients</h4>
+        <div data-ng-repeat="ingredient in ingredients">
+        <input type="text" data-ng-model="ingredient.qty">
+        <input type="text" data-ng-model="ingredient.measurement">
         <input type="text" data-ng-model="ingredient.name">
         <button data-ng-show="$last" data-ng-click="removeIng()">-</button>
+        </div>
         <button data-ng-click="addNewIng()">+</button>
         
+        <h4>Steps</h4>
+        <div data-ng-repeat="step in steps">
         <input type="text" data-ng-model="step.name">
         <button data-ng-show="$last" data-ng-click="removeStep()">-</button>
+        </div>
         <button data-ng-click="addNewStep()">+</button>
+        <br>
+        <button data-ng-click="saveRecipe()">Save Recipe</button>
+        </form>
+        <br>
+        <a href="/#!/recipes">Return to Recipes</a>
     </section>
 </div>

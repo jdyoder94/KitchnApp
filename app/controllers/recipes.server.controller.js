@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    Recipe = mongoose.model('Recipe');
+    Recipe = mongoose.model('Recipe'),
+    User = mongoose.model('User');
 
 var getErrorMessage = function(err) {
     if(err.errors) {
@@ -12,6 +13,34 @@ var getErrorMessage = function(err) {
 };
 
 exports.create = function(req, res){
+    var recipeReq = req.body;
+    var userId = recipeReq.uid;
+    var recName = recipeReq.name;
+    var recServe = recipeReq.servings;
+    var recDesc = recipeReq.description;
+    var recIngs = recipeReq.ingredients;
+    var recSteps = recipeReq.steps;
+    var recipe = new Recipe({
+        name: recName,
+        servings: recServe,
+        description: recDesc,
+        ingredients: recIngs,
+        steps: recSteps
+    });
+    
+    recipe.save(function(err){
+        if(err){
+            return res.status(400).send({
+               message: getErrorMessage(err) 
+            });
+        }else {
+            User.findOneAndUpdate({_id: userId}, {$push: {recipes: recipe._id}}, function(err, User){
+                console.log(err);
+            });
+            res.json(recipe);
+        }
+    });
+    
     
 };
 

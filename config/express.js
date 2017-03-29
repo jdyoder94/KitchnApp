@@ -31,6 +31,7 @@ module.exports = function(){
 	require('../app/routes/users.server.routes.js')(app);
     require('../app/routes/pantry.server.routes.js')(app);
     require('../app/routes/shopping.server.routes.js')(app);
+    require('../app/routes/recipes.server.routes.js')(app);
     
     app.use(express.static('./public'));
     
