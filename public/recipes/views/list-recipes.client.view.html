@@ -2,17 +2,13 @@
     <section data-ng-init="find()">
         <h1>Recipe Book</h1>
         <a href="/#!/recipes/create"><h2>New Recipe</h2></a>
-        <!--
-        <input type="text" id="name">
-        <input type="text" id="servings">
         
-        <input type="text" data-ng-model="ingredient.name">
-        <button data-ng-show="$last" data-ng-click="removeIng()">-</button>
-        <button data-ng-click="addNewIng()">+</button>
-        
-        <input type="text" data-ng-model="step.name">
-        <button data-ng-show="$last" data-ng-click="removeStep()">-</button>
-        <button data-ng-click="addNewStep()">+</button> -->
-         <a href="/">Return Home</a>
+        <ul>
+        <li data-ng-repeat="recipe in recipes">
+        <a data-ng-href="#!/recipes/{{recipe._id}}" data-ng-bind="recipe.name"></a>    
+        </li>
+        </ul>
+        <div data-ng-show="!recipes.length">You have no recipes, add one with the link above.</div>
+        <a href="/">Return Home</a>
     </section>
 </div>

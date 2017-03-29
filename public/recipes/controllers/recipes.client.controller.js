@@ -74,6 +74,12 @@ angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$
         });
         //console.log(recipeToSave);
         recipeToSave.$save();
+        
+        $location.path('recipes/');
     };
+    
+    $scope.find = function(){
+        $scope.recipes = Recipes.query({recipes: $scope.authentication.user.recipes});
+    }
 }                                                   
 ]);

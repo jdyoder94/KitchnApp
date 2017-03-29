@@ -45,7 +45,12 @@ exports.create = function(req, res){
 };
 
 exports.list = function(req, res){
-    
+    var recipes = req.query.recipes;
+    console.log(recipes);
+    Recipe.find({'_id': {$in: recipes}
+    }, function(err, recipes){
+        res.json(recipes);
+    });
 };
 
 exports.read = function(req, res){

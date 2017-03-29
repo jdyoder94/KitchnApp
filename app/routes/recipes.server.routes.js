@@ -3,5 +3,6 @@ var users = require('../../app/controllers/users.server.controller'),
 
 module.exports = function(app){
   app.route('/api/recipes')
+    .get(users.requiresLogin, recipes.list)
     .post(users.requiresLogin, recipes.create);
 };
