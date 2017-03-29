@@ -1,4 +1,4 @@
-angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$location', 'Authentication', 'Recipes', function($scope, $routeParams, $location, Authentication, Recipes){
+angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$location', '$http', 'Authentication', 'Recipes', function($scope, $routeParams, $location, $http, Authentication, Recipes){
     $scope.authentication = Authentication;
     
     $scope.ingredients = [{id: 'ingredient1'}];
@@ -73,13 +73,43 @@ angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$
             steps: $scope.stepList
         });
         //console.log(recipeToSave);
-        recipeToSave.$save();
+        recipeToSave.$save(function(response){
+            $location.path('recipes/');
+        }, function(errorResponse){
+            $scope.error = errorResponse.data.message;
+        });
         
-        $location.path('recipes/');
+        
     };
     
     $scope.find = function(){
         $scope.recipes = Recipes.query({recipes: $scope.authentication.user.recipes});
-    }
-}                                                   
-]);
+    };
+    
+    $scope.findOne = function(){
+        $scope.recipe = Recipes.get({
+           recipeId: $routeParams.recipeId 
+        });
+        
+        console.log($scope.recipe);
+    };
+    
+    $scope.delete = function(){
+        var recipe={};
+        recipe._id = $scope.recipe._id;
+        recipe.uid = $scope.authentication.user._id;
+            
+        $http({
+            url:'api/recipes/' + recipe._id,
+            method: 'DELETE',
+            data: recipe,
+            headers:{
+                "Content-Type": "application/json;charset=utf-8"
+            }
+        }).then(function(res){
+            console.log(res.data);
+        }, function(error){
+            console.log(error);
+        });
+    };                                                   
+}]);

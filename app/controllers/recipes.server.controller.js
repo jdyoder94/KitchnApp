@@ -54,7 +54,19 @@ exports.list = function(req, res){
 };
 
 exports.read = function(req, res){
-    
+    res.json(req.recipe);
+};
+
+exports.recipeByID = function(req, res, next, id){
+  Recipe.findById(id).exec(function(err, recipe){
+      if(err)
+         return next(err);
+      if(!recipe)
+          return next(new Error('Failed to load recipe ' + id));
+      
+      req.recipe = recipe;
+      next();
+  });  
 };
 
 exports.update = function(req, res){
@@ -62,5 +74,16 @@ exports.update = function(req, res){
 };
 
 exports.delete = function(req, res) {
+    var delReq = req.body;
+    var uid = delReq.uid;
+    var rid = delReq._id;
+    console.log(delReq);
+    User.update({_id: uid}, {$pull: {recipes: rid}}, function(err, User){
+        console.log(User);
+        console.log(err);
+    });
     
+    Recipe.findByIdAndRemove({_id: rid}, function(err, recipe){
+        console.log(err);
+    });
 };

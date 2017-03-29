@@ -1,0 +1,21 @@
+<div data-ng-controller="RecipeCtrl">
+<section data-ng-init="findOne()">
+<h2 data-ng-bind="recipe.name"></h2>
+
+<a href="/#!/todos/{{todo._id}}/edit">edit</a>
+<a href="#" data-ng-click="delete();">delete</a>
+
+<h4>Servings: <span data-ng-bind="recipe.servings"></span></h4>
+<p data-ng-bind="recipe.description"></p>
+   
+<h1>Ingredients</h1>
+<ul>
+<li data-ng-repeat="ingredient in recipe.ingredients"><span data-ng-show="ingredient.ingQty" data-ng-bind="ingredient.ingQty"></span>&nbsp;<span data-ng-show="ingredient.ingMeasurement" data-ng-bind="ingredient.ingMeasurement"></span>&nbsp;<span data-ng-bind="ingredient.ingName"> </span></li>    
+</ul>
+
+<h1>Directions</h1>
+<ol>
+<li data-ng-repeat="step in recipe.steps"><span data-ng-bind="step.stepText"></span></li>    
+</ol>
+</section>
+</div>
