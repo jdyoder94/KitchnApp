@@ -1,5 +1,5 @@
 var appName = 'KitchnApp';
-var app = angular.module(appName, ['ngResource', 'ngRoute', 'pantry', 'users', 'main']);
+var app = angular.module(appName, ['ngResource', 'ngRoute', 'pantry', 'shopping', 'users', 'recipes', 'main']);
 
 app.config(['$locationProvider', function($locationProvider) {
         $locationProvider.hashPrefix('!');

@@ -1,0 +1,16 @@
+<div ng-controller="RecipeCtrl">
+    <section>
+        <h1>New Recipe</h1>
+        
+        <input type="text" id="name">
+        <input type="text" id="servings">
+        
+        <input type="text" data-ng-model="ingredient.name">
+        <button data-ng-show="$last" data-ng-click="removeIng()">-</button>
+        <button data-ng-click="addNewIng()">+</button>
+        
+        <input type="text" data-ng-model="step.name">
+        <button data-ng-show="$last" data-ng-click="removeStep()">-</button>
+        <button data-ng-click="addNewStep()">+</button>
+    </section>
+</div>

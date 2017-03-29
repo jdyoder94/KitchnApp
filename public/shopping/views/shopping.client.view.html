@@ -1,6 +1,6 @@
-<div ng-controller="PantryCtrl">
+<div ng-controller="ShoppingCtrl">
     <section data-ng-init="find()">
-    <h1> Pantry List </h1>
+    <h1> Shopping List </h1>
         <ul>
            <li ng-repeat="ing in ingredients.items"><input type="checkbox" ng-model="selectedItems[ing]">{{ing}}</li>
         </ul>

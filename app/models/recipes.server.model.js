@@ -15,4 +15,4 @@ var RecipeSchema = new Schema({
     }]
 });
 
-mongoose.model('Recipe', RecipeSchema);
+mongoose.model('Recipe', RecipeSchema, 'recipes');
