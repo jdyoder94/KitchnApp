@@ -6,6 +6,6 @@ angular.module('recipes').factory('Recipes', ['$resource',
            update: {
                method: 'PUT'
            } 
-        });    
+        });   
     }
 ]);

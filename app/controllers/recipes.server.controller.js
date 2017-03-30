@@ -70,7 +70,32 @@ exports.recipeByID = function(req, res, next, id){
 };
 
 exports.update = function(req, res){
-    
+    var recipe = new Recipe({
+        _id: req.body._id,
+        name: req.body.name,
+        servings: req.body.servings,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        steps: req.body.steps
+    });
+    var id = req.body._id;
+    console.log(recipe);
+    /*recipe.save(function(err){
+        if(err){
+            console.log(getErrorMessage(err));
+            return res.status(400).send({
+               message: getErrorMessage(err) 
+            });
+        }else{
+            res.json(recipe);
+        }
+    });*/
+    Recipe.findOneAndUpdate({_id: id}, recipe, function(err, Recipe){
+       if(err){
+           return res.send(500, {error: err});
+       } 
+        return res.json(Recipe);
+    });
 };
 
 exports.delete = function(req, res) {

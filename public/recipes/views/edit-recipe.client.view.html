@@ -1,34 +1,34 @@
 <div ng-controller="RecipeCtrl">
-    <section>
-        <h1>New Recipe</h1>
-        <form class="add-recipe" novalidate>
-        <input type="text" data-ng-model="name" id="name" placeholder="Name">
+    <section data-ng-init="findOneAndPrepForm()">
+        <h1>Edit Recipe</h1>
+        <form class="edit-recipe" novalidate>
+        <input type="text" data-ng-model="name" id="name" placeholder="Name" data-ng-value="recipe.name">
         <div>
-        <input type="text" data-ng-model="servings" id="servings" placeholder="Serves">
+        <input type="text" data-ng-model="servings" id="servings" placeholder="Serves" data-ng-value="recipe.servings">
         </div>
         <div>
-            <textarea id="description" data-ng-model="description" placeholder="Description" rows=4></textarea>
+            <textarea id="description" data-ng-value="recipe.description" data-ng-model="description" placeholder="Description" rows=4></textarea>
         </div>
         
         <h4> Ingredients</h4>
-        <div data-ng-repeat="ingredient in ingredients">
-        <input type="text" data-ng-model="ingredient.qty">
-        <input type="text" data-ng-model="ingredient.measurement">
-        <input type="text" data-ng-model="ingredient.name">
-        <button data-ng-show="$last" data-ng-click="removeIng()">-</button>
+        <div data-ng-repeat="ingredient in editIngredients">
+        <input type="text" data-ng-value="ingredient.ingQty" data-ng-model="ingredient.ingQty">
+        <input type="text" data-ng-value="ingredient.ingMeasurement" data-ng-model="ingredient.ingMeasurement">
+        <input type="text" data-ng-value="ingredient.ingName" data-ng-model="ingredient.ingName">
+        <button data-ng-show="$last" data-ng-click="editRemoveIng()">-</button>
         </div>
-        <button data-ng-click="addNewIng()">+</button>
+        <button data-ng-click="editNewIng()">+</button>
         
         <h4>Steps</h4>
-        <div data-ng-repeat="step in steps">
-        <input type="text" data-ng-model="step.name">
-        <button data-ng-show="$last" data-ng-click="removeStep()">-</button>
+        <div data-ng-repeat="step in editSteps">
+        <input type="text" data-ng-value="step.stepText" data-ng-model="step.stepText">
+        <button data-ng-show="$last" data-ng-click="editRemoveStep()">-</button>
         </div>
-        <button data-ng-click="addNewStep()">+</button>
+        <button data-ng-click="editNewStep()">+</button>
         <br>
-        <button data-ng-click="saveRecipe()">Save Recipe</button>
+        <button data-ng-click="saveChanges()">Save Changes</button>
         </form>
         <br>
-        <a href="/#!/recipes">Return to Recipes</a>
+        <a href="/#!/recipes">Cancel</a>
     </section>
 </div>

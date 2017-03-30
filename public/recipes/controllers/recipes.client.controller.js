@@ -31,6 +31,28 @@ angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$
         }
     };
     
+    $scope.editNewIng = function(){
+        $scope.editIngredients.push({'ingName': '', 'ingQty': '', 'ingMeasurement': ''});
+        console.log($scope.editIngredients);
+    };
+    $scope.editRemoveIng = function(){
+        if($scope.editIngredients.length > 1){
+            var idToRemove = $scope.editIngredients.length-1;
+            $scope.editIngredients.splice(idToRemove);
+        }
+    };
+    
+    $scope.editNewStep = function(){
+        $scope.editSteps.push({'stepText': '', 'stepNum': $scope.editSteps.length+1});
+        console.log($scope.editSteps);
+    };
+    $scope.editRemoveStep = function(){
+        if($scope.editSteps.length > 1){
+            var idToRemove = $scope.editSteps.length-1;
+            $scope.editSteps.splice(idToRemove);
+        }
+    };
+    
     $scope.saveRecipe = function(){
         var ctr = 0;
         angular.forEach($scope.ingredients, function(ingredient){
@@ -94,6 +116,24 @@ angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$
         console.log($scope.recipe);
     };
     
+     $scope.findOneAndPrepForm = function(){
+        $scope.recipe = Recipes.get({
+           recipeId: $routeParams.recipeId 
+        });
+        var recipe = {};
+        $scope.recipe.$promise.then(function(response){
+            recipe = response;
+            $scope.name = recipe.name;
+            $scope.servings = recipe.servings;
+            $scope.description = recipe.description;
+            $scope.editIngredients = recipe.ingredients;
+            $scope.editSteps = recipe.steps;
+            console.log($scope.editIngredients);
+            console.log($scope.editSteps);
+        });
+        
+    };
+    
     $scope.delete = function(){
         var recipe={};
         recipe._id = $scope.recipe._id;
@@ -111,5 +151,24 @@ angular.module('recipes').controller('RecipeCtrl', ['$scope', '$routeParams', '$
         }, function(error){
             console.log(error);
         });
-    };                                                   
+    };    
+    
+    $scope.saveChanges = function(){
+        var recipeToSave = new Recipes({
+            uid: $scope.authentication.user._id,
+            _id: $scope.recipe._id,
+            name: $scope.name,
+            servings: $scope.servings,
+            description: $scope.description,
+            ingredients: $scope.editIngredients,
+            steps: $scope.editSteps
+        });
+        
+
+        recipeToSave.$update(function(response){
+            $location.path('recipes/');
+        }, function(errorResponse){
+            $scope.error = errorResponse.data.message;
+        });
+    }
 }]);

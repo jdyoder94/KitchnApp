@@ -8,6 +8,7 @@ module.exports = function(app){
     
     app.route('/api/recipes/:recipeId')
         .get(recipes.read)
+        .put(users.requiresLogin, recipes.update)
         .delete(users.requiresLogin, recipes.delete);
     
     app.param('recipeId', recipes.recipeByID);
